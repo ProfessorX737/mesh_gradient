@@ -72,7 +72,7 @@ class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
     }
 
     setState(() {
-      _delta += 0.01;
+      _delta += (0.01 * widget.options.speed);
     });
   }
 

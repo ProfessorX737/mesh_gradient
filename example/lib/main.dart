@@ -74,91 +74,113 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
         body: Stack(
           children: [
             Positioned.fill(
-              child: MeshGradient(
-                controller: _controller,
-                options: MeshGradientOptions(
-                  blend: 3.5,
-                  noiseIntensity: 0.5,
-                ),
-              ),
-            ),
-            Positioned.fill(
-              bottom: 100,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    // MeshGradientController functions are async, so you can await them
-                    await _controller.animateSequence(
-                      duration: const Duration(seconds: 4),
-                      sequences: [
-                        AnimationSequence(
-                          pointIndex: 0,
-                          newPoint: MeshGradientPoint(
-                            position: Offset(
-                              Random().nextDouble() * 2 - 0.5,
-                              Random().nextDouble() * 2 - 0.5,
-                            ),
-                            color: _controller.points.value[0].color,
-                          ),
-                          interval: const Interval(
-                            0,
-                            0.5,
-                            curve: Curves.easeInOut,
-                          ),
-                        ),
-                        AnimationSequence(
-                          pointIndex: 1,
-                          newPoint: MeshGradientPoint(
-                            position: Offset(
-                              Random().nextDouble() * 2 - 0.5,
-                              Random().nextDouble() * 2 - 0.5,
-                            ),
-                            color: _controller.points.value[1].color,
-                          ),
-                          interval: const Interval(
-                            0.25,
-                            0.75,
-                            curve: Curves.easeInOut,
-                          ),
-                        ),
-                        AnimationSequence(
-                          pointIndex: 2,
-                          newPoint: MeshGradientPoint(
-                            position: Offset(
-                              Random().nextDouble() * 2 - 0.5,
-                              Random().nextDouble() * 2 - 0.5,
-                            ),
-                            color: _controller.points.value[2].color,
-                          ),
-                          interval: const Interval(
-                            0.5,
-                            1,
-                            curve: Curves.easeInOut,
-                          ),
-                        ),
-                        AnimationSequence(
-                          pointIndex: 3,
-                          newPoint: MeshGradientPoint(
-                            position: Offset(
-                              Random().nextDouble() * 2 - 0.5,
-                              Random().nextDouble() * 2 - 0.5,
-                            ),
-                            color: _controller.points.value[3].color,
-                          ),
-                          interval: const Interval(
-                            0.75,
-                            1,
-                            curve: Curves.easeInOut,
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                  child: const Text("Animate"),
-                ),
-              ),
-            ),
+                child: AnimatedMeshGradient(
+              colors: [
+                const Color.fromARGB(255, 128, 45, 223),
+                const Color.fromARGB(255, 20, 95, 193),
+                const Color.fromARGB(255, 207, 72, 72),
+                const Color.fromARGB(255, 126, 67, 199),
+              ],
+              options: AnimatedMeshGradientOptions(
+                  speed: 1, grain: 0.1, frequency: 8, amplitude: 50),
+            )),
+            // Positioned.fill(
+            //     child: AnimatedMeshGradient(
+            //   colors: [
+            //     const Color.fromARGB(255, 117, 19, 229),
+            //     const Color.fromARGB(255, 19, 101, 189),
+            //     const Color.fromARGB(255, 196, 88, 16),
+            //     const Color.fromARGB(244, 136, 20, 161),
+            //   ],
+            //   options: AnimatedMeshGradientOptions(
+            //       speed: 1, grain: 0.4, frequency: 8, amplitude: 50),
+            // )),
+            // Positioned.fill(
+            //   child: MeshGradient(
+            //     controller: _controller,
+            //     options: MeshGradientOptions(
+            //       blend: 3.5,
+            //       noiseIntensity: 0.5,
+            //     ),
+            //   ),
+            // ),
+            // Positioned.fill(
+            //   bottom: 100,
+            //   child: Align(
+            //     alignment: Alignment.bottomCenter,
+            //     child: ElevatedButton(
+            //       onPressed: () async {
+            //         // MeshGradientController functions are async, so you can await them
+            //         await _controller.animateSequence(
+            //           duration: const Duration(seconds: 4),
+            //           sequences: [
+            //             AnimationSequence(
+            //               pointIndex: 0,
+            //               newPoint: MeshGradientPoint(
+            //                 position: Offset(
+            //                   Random().nextDouble() * 2 - 0.5,
+            //                   Random().nextDouble() * 2 - 0.5,
+            //                 ),
+            //                 color: _controller.points.value[0].color,
+            //               ),
+            //               interval: const Interval(
+            //                 0,
+            //                 0.5,
+            //                 curve: Curves.easeInOut,
+            //               ),
+            //             ),
+            //             AnimationSequence(
+            //               pointIndex: 1,
+            //               newPoint: MeshGradientPoint(
+            //                 position: Offset(
+            //                   Random().nextDouble() * 2 - 0.5,
+            //                   Random().nextDouble() * 2 - 0.5,
+            //                 ),
+            //                 color: _controller.points.value[1].color,
+            //               ),
+            //               interval: const Interval(
+            //                 0.25,
+            //                 0.75,
+            //                 curve: Curves.easeInOut,
+            //               ),
+            //             ),
+            //             AnimationSequence(
+            //               pointIndex: 2,
+            //               newPoint: MeshGradientPoint(
+            //                 position: Offset(
+            //                   Random().nextDouble() * 2 - 0.5,
+            //                   Random().nextDouble() * 2 - 0.5,
+            //                 ),
+            //                 color: _controller.points.value[2].color,
+            //               ),
+            //               interval: const Interval(
+            //                 0.5,
+            //                 1,
+            //                 curve: Curves.easeInOut,
+            //               ),
+            //             ),
+            //             AnimationSequence(
+            //               pointIndex: 3,
+            //               newPoint: MeshGradientPoint(
+            //                 position: Offset(
+            //                   Random().nextDouble() * 2 - 0.5,
+            //                   Random().nextDouble() * 2 - 0.5,
+            //                 ),
+            //                 color: _controller.points.value[3].color,
+            //               ),
+            //               interval: const Interval(
+            //                 0.75,
+            //                 1,
+            //                 curve: Curves.easeInOut,
+            //               ),
+            //             ),
+            //           ],
+            //         );
+            //       },
+            //       child: const Text("Animate"),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
